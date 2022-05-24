@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：task3
+  File name(文件名): test1
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/24
+  Time(创建时间)： 19:26
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML5拖放API之回收站效果</title>
+    <link rel="stylesheet" href="css/recycle.css">
+    <link rel="stylesheet" href="css/animate.css">
+</head>
+<body>
+<h3>HTML5拖放API之回收站效果</h3>
+<hr/>
+<!--文件展示区域-->
+<div>
+    <div class="animated bounceInRight">
+        <div id="container">
+            <div id="file1" class="folder" draggable="true" ondragstart="drag(event)">
+                文件1
+            </div>
+            <div id="file2" class="folder" draggable="true" ondragstart="drag(event)">
+                文件2
+            </div>
+            <div id="file3" class="folder" draggable="true" ondragstart="drag(event)">
+                文件3
+            </div>
+            <div id="file4" class="folder" draggable="true" ondragstart="drag(event)">
+                文件4
+            </div>
+        </div>
+    </div>
+</div>
+<!--回收站区域-->
+<div>
+    <div class="animated zoomInUp">
+        <div id="recycle" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+    </div>
+</div>
+<script>
+    //ondragstart事件回调函数
+    function drag(ev)
+    {
+        //设置传递的内容为被拖拽元素的id名称，数据类型为纯文本类型
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+    }
+
+    //ondragover事件回调函数
+    function allowDrop(ev)
+    {
+        //解禁当前元素为可放置被拖拽元素的区域
+        ev.preventDefault();
+    }
+
+    //ondrop事件回调函数
+    function drop(ev)
+    {
+        //解禁当前元素为可放置被拖拽元素的区域
+        ev.preventDefault();
+        //获取当前被放置的元素id名称
+        var id = ev.dataTransfer.getData("text");
+        //根据id名称获取元素对象
+        var folder = document.getElementById(id);
+        //获取文件夹区域并删除该元素对象
+        document.getElementById("container").removeChild(folder);
+    }
+</script>
+</body>
+</html>

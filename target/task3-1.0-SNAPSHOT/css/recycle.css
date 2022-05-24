@@ -1,0 +1,43 @@
+/*
+  Project name(项目名称)：task3 
+  File name(文件名): recycle
+  Author(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/24 
+  Time(创建时间)： 19:27
+  Version(版本): 1.0
+  Description(描述)： 无
+ */
+
+
+/*设置用于放置文件夹的区域样式*/
+div#container {
+    background-color: rgb(194, 195, 197);
+    border: 1px solid;
+    width: 380px;
+    height: 250px;
+    float: left;
+}
+
+/*设置文件夹样式*/
+.folder {
+    text-align: center;
+    float: left;
+    margin: 20px;
+    background: url(./../img/folder.png) no-repeat;
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+}
+
+/*设置回收站样式*/
+div#recycle {
+    width: 200px;
+    height: 200px;
+    float: left;
+    text-align: center;
+    background: url(./../img/recycle.jpg) no-repeat;
+    margin: 60px;
+}
+

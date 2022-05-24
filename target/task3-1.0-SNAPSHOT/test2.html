@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：task3
+  File name(文件名): test2
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/24
+  Time(创建时间)： 19:32
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #recycle {
+            width: 200px;
+            height: 50px;
+            border: 1px dashed;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .photoframe {
+            background: url(img/photoframe.jpg) no-repeat;
+            width: 500px;
+            height: 438px;
+            text-align: center;
+            float: left;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        .block {
+            width: 0px;
+            height: 100%;
+        }
+
+        #output {
+            float: left;
+            margin: 10px;
+            text-align: center;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<h3>HTML5拖放API之图片相框效果</h3>
+<hr>
+<!--可放置文件区-->
+<div id="recycle" ondragover="allowDrop(event)" ondrop="fileDrop(event)">请将图片拖放至此处</div>
+<br>
+<!--带有相框的图片展示区-->
+<div id="output"></div>
+<script>
+    function allowDrop(ev)
+    {
+        ev.preventDefault();
+    }
+
+    function fileDrop(e)
+    {
+        e.preventDefault();
+        var output = document.getElementById("output");
+        output.innerHTML = "";
+        var files = e.dataTransfer.files;
+        for (var i = 0, f; f = files[i]; i++)
+        {
+            var imgURL = window.webkitURL.createObjectURL(f);
+            var img = document.createElement("img");
+            img.setAttribute("src", imgURL);
+            img.setAttribute("width", "330");
+            img.setAttribute("height", "270");
+            var photo = document.createElement("div");
+            photo.setAttribute("class", "photoframe");
+            photo.appendChild(img);
+            var img2 = document.createElement("img");
+            img2.setAttribute("class", "block");
+            photo.appendChild(img2);
+
+            output.appendChild(photo);
+            var status = document.createElement("div");
+            var lastModified = f.lastModifiedDate;
+            var lastModifiedStr = lastModified ? lastModified.toLocaleDateString() + '' + lastModified.toLocaleTimeString() : 'n/a';
+            status.innerHTML = '<strong>' + f.name + '</strong>(' + (f.type || 'n/a') + ')<br>大小：' + f.size + '字节<br>修改时间：' + lastModifiedStr;
+            output.appendChild(status);
+        }
+    }
+</script>
+</body>
+</html>
